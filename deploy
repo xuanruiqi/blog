@@ -1,0 +1,22 @@
+#!/bin/sh
+
+git stash
+git checkout develop
+
+stack exec site clean
+stack exec site build
+
+git fetch --all
+git checkout -b master --track origin/master
+
+cp -a _site/. .
+
+git add -A
+echo "Commit number: $(date +%s)"
+git commit -m "Publish $(date +%s)"
+
+git push origin master:master
+
+git checkout develo
+git branch -D master
+git stash pop
