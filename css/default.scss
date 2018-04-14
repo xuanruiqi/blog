@@ -1,0 +1,69 @@
+$greenBlue: #18bc9c;
+$darkGreen: #212529;
+$deepBlue: #2C3E50;
+$white: #FFFFFF;
+
+
+body {
+    font-family: 'Lato', sans-serif;
+    color: black;
+    font-size: 16px;
+    margin: 0px auto 0px auto;
+    width: 700px;
+}
+
+header {
+    background: $deepBlue;
+    padding: 12px 10px 12px 10px;
+}
+
+main {
+    margin: auto 10px auto 10px;
+}
+
+a {
+    color: $greenBlue;
+}
+
+nav {
+    text-align: right;
+}
+
+nav a {
+    color: $white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 12px;
+    text-decoration: none;
+}
+
+footer {
+    border-top: solid 2px $deepBlue;
+    color: #555;
+    font-size: 12px;
+    margin-top: 30px;
+    padding: 12px 0px 12px 0px;
+    text-align: right;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+article .header {
+    color: #555;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.logo a {
+    color: $white;
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+}
