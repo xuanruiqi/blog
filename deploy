@@ -1,5 +1,18 @@
 #!/bin/sh
 
+yes_or_exit () {
+    echo "There are uncommitted changes in current branch. Are you sure you want to proceed? (y/n) "
+    read choice
+    if [ "$choice" == "y" ]
+    then
+    else
+        echo "OK, not continuing..."
+        exit 0
+    fi
+}
+
+git diff-index --quiet HEAD -- || echo "untracked"; 
+
 echo "Switching to develop branch (usually should be no-op)..."
 git stash
 git checkout develop

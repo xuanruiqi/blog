@@ -6,23 +6,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Ray's Blog - $title$</title>
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-        <link rel="stylesheet" href="/css/default.css" />
+        <link rel="stylesheet" href="/css/site.css" />
     </head>
     <body>
-        <header>
-            <div class="logo">
-                <a href="/">Ray's Blog</a>
-            </div>
-            <nav>
-                <a href="/">Home</a>
-                <a href="/about.html">About</a>
-                <a href="/archive.html">Archive</a>
-            </nav>
-        </header>
+        $partial("templates/navbar.html")$
 
         <main role="main">
-            <h1>$title$</h1>
-            $body$
+          <div class="container">
+            <div class="row">
+              <h1>$title$</h1>
+            </div>
+            <div class="row">
+              $body$
+            </div>
+          </div>
         </main>
 
         <footer>
