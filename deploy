@@ -1,18 +1,30 @@
 #!/bin/sh
 
-yes_or_exit () {
-    printf "There are uncommitted changes in current branch. Are you sure you want to proceed? (y/n) "
+force_commit () {
+    printf "There are uncommitted changes in this branch. Are you sure you want to proceed? (y/n) "
     read choice
     if [ "$choice" = "y" ]
     then
         echo "OK, proceeding..."
     else
         echo "Not continuing..."
-        exit 0
+        exit 1
     fi
 }
 
-git diff-index --quiet HEAD -- || yes_or_exit;
+force_build_error () {
+    printf "There are build errors. Are you sure you want to proceed? (y/n) "
+    read choice
+    if [ "$choice" = "y" ]
+    then
+        echo "OK, proceeding..."
+    else
+        echo "Not continuing..."
+        exit 1
+    fi
+}
+
+git diff-index --quiet HEAD -- || force_commit;
 
 echo "Switching to develop branch (usually should be no-op)..."
 git stash
@@ -20,7 +32,7 @@ git checkout develop
 
 echo "Building site..."
 stack exec site clean
-stack exec site build
+stack exec site build || force_build_error;
 
 echo "Pulling from master..."
 git fetch --all
