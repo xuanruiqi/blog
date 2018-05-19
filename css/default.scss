@@ -8,8 +8,9 @@ body {
     font-family: 'Lato', sans-serif;
     color: black;
     font-size: 16px;
-    margin: 0px auto 0px auto;
+    margin: 20px auto 0px auto;
     width: 700px;
+    max-width: 90%;
 }
 
 header {
@@ -27,6 +28,7 @@ a {
 
 nav {
     text-align: right;
+    max-size: 100%;
 }
 
 nav a {
