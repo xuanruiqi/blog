@@ -5,9 +5,9 @@ yes_or_exit () {
     read choice
     if [ "$choice" = "y" ]
     then
-        echo "OK, continuing..."
+        echo "OK, proceeding..."
     else
-        echo "No, not continuing..."
+        echo "Not continuing..."
         exit 0
     fi
 }
