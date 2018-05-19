@@ -8,7 +8,6 @@ force_commit () {
         echo "OK, proceeding..."
     else
         echo "Not continuing..."
-<<<<<<< Updated upstream
         exit 1
     fi
 }
@@ -26,15 +25,6 @@ force_build_error () {
 }
 
 git diff-index --quiet HEAD -- || force_commit;
-=======
-        exit 0
-    fi
-}
-
-# what
-
-git diff-index --quiet HEAD -- || echo "untracked"; 
->>>>>>> Stashed changes
 
 echo "Switching to develop branch (usually should be no-op)..."
 git stash
