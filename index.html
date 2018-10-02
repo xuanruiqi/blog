@@ -8,13 +8,12 @@ title: Home
 
 <h2>Posts</h2>
 <ul>
-  
+  $for(recentPosts)$
   <li>
-    <a href="./posts/2018-04-13-migration.html">Migration</a> - April 13, 2018
+    <a href="$url$">$title$</a> - $date$
   </li>
-  
+  $endfor$
 </ul>
 
 
-<p>…or you can find more in the <a href="./archive.html">archives</a>.</p>
-
+<p>…or you can find more in the <a href="/archive.html">archives</a>.</p>
