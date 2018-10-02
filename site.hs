@@ -13,8 +13,8 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
-    match "css/site.scss" $ do
-        route $ setExtension "css"
+    match "css/*.scss" $ do
+        route $ setExtension ".css"
         let compressCssItem = fmap compressCss
         compile (compressCssItem <$> sassCompiler)
 
@@ -62,10 +62,10 @@ main = hakyll $ do
     match "index.html" $ do
         route idRoute
         compile $ do
-            posts <- recentFirst =<< loadAll "posts/*"
+            recentPosts <- fmap (take 5) . recentFirst =<< loadAll "posts/*"
             let indexCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Home"                `mappend`
+                    listField "recentPosts" postCtx (return recentPosts) `mappend`
+                    constField "title" "Home"                            `mappend`
                     defaultContext
 
             getResourceBody
