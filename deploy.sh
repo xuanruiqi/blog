@@ -36,7 +36,7 @@ stack exec site build || force_build_error;
 
 echo "Pulling from master..."
 git fetch --all
-git checkout -b master --track origin/master || exit
+git checkout master || exit
 
 echo "Copying site files..."
 cp -a _site/. .
