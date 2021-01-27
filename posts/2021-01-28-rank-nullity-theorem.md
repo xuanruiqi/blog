@@ -12,14 +12,16 @@ one could prove the rank-nullity theorem:
 __Theorem 1__: every short exact sequence of vector spaces splits.
 
 This looks nothing like the rank-nullity theorem! But first we can look at
-how this implies rank-nullity. A short exact sequence is just a sequence
+how this implies rank-nullity. A _short exact sequence_ is just a sequence
 $$0 \rightarrow U \xrightarrow{f} V \xrightarrow{g} W \rightarrow 0$$
-of vector spaces, where $\mathrm{im} \ f = \ker g$ (hence the name "exact").
+of vector spaces (or $R$-modules, which are exactly the same as vector spaces 
+except that they are defined over a base ring $R$ that is not necessarily a field), 
+where $f$ is injective, $g$ is surjective, and $\mathrm{im} \ f = \ker g$ (hence the name "exact").
 
-This sequence is split when $V \cong U \oplus W$. A short exact sequence is 
+This sequence is said to be _split_ when $V \cong U \oplus W$. A short exact sequence is 
 interesting, because it tells us how $V$ is built from $U$ and $W$: if the 
-exact sequence is split, then we have the most obvious building method, which 
-make things much easier. Another way to think about this is by the splitting lemma:
+exact sequence is split, then we have the simplest building method (namely, by direct sum), which 
+make things much easier. Another way to think about this is by looking at the splitting lemma:
 
 __Lemma__ (splitting lemma): for a short exact sequence 
 $$0 \rightarrow L \xrightarrow{f} M \xrightarrow{g} N \rightarrow 0$$
@@ -34,10 +36,10 @@ I won't repeat the proof here, because it could be found in any graduate algebra
 side note, this facts actually holds over any abelian category, not just $\mathbf{Mod} R$.
 
 The fact that every short exact sequence of vector spaces splits is rooted in a much simpler 
-fact: any vector space has a basis. We can use this fact to prove theorem 1:
+fact: any vector space has a basis. We can use this fact to prove Theorem 1:
 
-__Proof of Theorem 1__: let $\{w_i\}$ be a basis of $W$. Since $g$ is necessarily surjective 
-(why?), we can find a set $\{v_i\} \subseteq V$ such that $f(v_i) = w_i$. Then we define a 
+__Proof of Theorem 1__: let $\{w_i\}$ be a basis of $W$. Since $g$ is necessarily surjective,.
+we can find a set $\{v_i\} \subseteq V$ such that $f(v_i) = w_i$. Then we define a 
 function $h : W \rightarrow V$ by setting $h(w_i) = v_i$. This is well-defined because a linear 
 map is determined by its action on basis elements. $h$ is a right inverse to $g$, so by the splitting 
 lemma this short exact sequence is split.
@@ -62,8 +64,8 @@ and $f : M \rightarrow N$ a linear map. Then $\mathrm{im} \ f \cong M/\ker f$.
 
 This is slightly weaker than Theorem 1, but enough to prove rank-nullity:
 
-__Alternate proof__: by the first isomorphism theorem, we know that $\mathrm{im} \ f \cong V/ \ker f$. Taking the 
-dimension on both sides yields $\dim \mathrm{im} \ f = \dim V - \dim \ker f$.
+__Alternate proof__: simply take the dimension on both sides in the isomorphism given by the first isomorphism
+theorem.
 
 This reiterates the essence of rank-nullity: the rank-nullity theorem is just the first isomorphism theorem in 
 disguise, telling us that a linear map divides the information about a vector space into two complementary parts!
