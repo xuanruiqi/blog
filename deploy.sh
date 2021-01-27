@@ -51,5 +51,4 @@ git push origin master:master
 
 echo "OK, returning to develop"
 git checkout develop
-git branch -D master
 git stash pop
