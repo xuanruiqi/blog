@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Xuanrui's Blog - The rank-nullity theorem</title>
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link rel="stylesheet" href="../css/default.css" />
+    </head>
+    <body>
+       <header>
+         <div class="logo">
+           <a href="../">Xuanrui's Blog</a>
+         </div>
+        <nav>
+          <a href="../">Home</a>
+          <a href="../about.html">About</a>
+          <a href="../archive.html">Archive</a>
+        </nav>
+       </header>
+
+        <main role="main">
+          <div class="container">
+            <div class="row">
+              <h1>The rank-nullity theorem</h1>
+            </div>
+            <div class="row">
+              <article>
+    <section class="header">
+        Posted on January 28, 2021
+        <br />
+        
+            Tags: <a title="All pages tagged 'math'." href="../tags/math.html">math</a>, <a title="All pages tagged 'linear-algebra'." href="../tags/linear-algebra.html">linear-algebra</a>, <a title="All pages tagged 'abstract-algebra'." href="../tags/abstract-algebra.html">abstract-algebra</a>
+        
+    </section>
+    <section>
+        <p>This post is about the what the rank-nullity theorem, a rather basic and fundamental result in linear algebra, really means.</p>
+<p>First, I will state a result about vector spaces from which one could prove the rank-nullity theorem:</p>
+<p><strong>Theorem 1</strong>: every short exact sequence of vector spaces splits.</p>
+<p>This looks nothing like the rank-nullity theorem! But first we can look at how this implies rank-nullity. A <em>short exact sequence</em> is just a sequence <span class="math display">$$0 \rightarrow U \xrightarrow{f} V \xrightarrow{g} W \rightarrow 0$$</span> of vector spaces (or <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>-modules, which are exactly the same as vector spaces except that they are defined over a base ring <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math> that is not necessarily a field), where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>f</mi><annotation encoding="application/x-tex">f</annotation></semantics></math> is injective, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math> is surjective, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="normal"><mi>i</mi><mi>m</mi></mstyle><mspace width="0.222em"></mspace><mi>f</mi><mo>=</mo><mo>ker</mo><mi>g</mi></mrow><annotation encoding="application/x-tex">\mathrm{im} \ f = \ker g</annotation></semantics></math> (hence the name “exact”).</p>
+<p>This sequence is said to be <em>split</em> when <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>≅</mo><mi>U</mi><mo>⊕</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">V \cong U \oplus W</annotation></semantics></math>. A short exact sequence is interesting, because it tells us how <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math> is built from <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>W</mi><annotation encoding="application/x-tex">W</annotation></semantics></math>: if the exact sequence is split, then we have the simplest building method (namely, by direct sum), which make things much easier. Another way to think about this is by looking at the splitting lemma:</p>
+<p><strong>Lemma</strong> (splitting lemma): for a short exact sequence <span class="math display">$$0 \rightarrow L \xrightarrow{f} M \xrightarrow{g} N \rightarrow 0$$</span> of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>-modules, where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math> is any ring, the following are equivalent:</p>
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>f</mi><annotation encoding="application/x-tex">f</annotation></semantics></math> is left-invertible, i.e. there is a morphism <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>:</mo><mi>B</mi><mo>→</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">h : B \rightarrow A</annotation></semantics></math> such that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>∘</mo><mi>f</mi><mo>=</mo><msub><mstyle mathvariant="normal"><mi>i</mi><mi>d</mi></mstyle><mi>A</mi></msub></mrow><annotation encoding="application/x-tex">h \circ f = \mathrm{id}_A</annotation></semantics></math>;</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math> is right-invertible;</li>
+<li>the sequence is split, i.e. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>≅</mo><mi>L</mi><mo>⊕</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">M \cong L \oplus N</annotation></semantics></math>.</li>
+</ul>
+<p>I won’t repeat the proof here, because it could be found in any graduate algebra text. On a side note, this facts actually holds over any abelian category, not just <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>𝐌</mi><mi>𝐨</mi><mi>𝐝</mi></mstyle><mi>R</mi></mrow><annotation encoding="application/x-tex">\mathbf{Mod} R</annotation></semantics></math>.</p>
+<p>The fact that every short exact sequence of vector spaces splits is rooted in a much simpler fact: any vector space has a basis. We can use this fact to prove Theorem 1:</p>
+<p><strong>Proof of Theorem 1</strong>: let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{w_i\}</annotation></semantics></math> be a basis of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>W</mi><annotation encoding="application/x-tex">W</annotation></semantics></math>. Since <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math> is necessarily surjective,. we can find a set <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><msub><mi>v</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">}</mo><mo>⊆</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">\{v_i\} \subseteq V</annotation></semantics></math> such that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>v</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mi>w</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">f(v_i) = w_i</annotation></semantics></math>. Then we define a function <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>:</mo><mi>W</mi><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">h : W \rightarrow V</annotation></semantics></math> by setting <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mi>v</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">h(w_i) = v_i</annotation></semantics></math>. This is well-defined because a linear map is determined by its action on basis elements. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>h</mi><annotation encoding="application/x-tex">h</annotation></semantics></math> is a right inverse to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math>, so by the splitting lemma this short exact sequence is split.</p>
+<p><strong>Proof of rank-nullity</strong>: at this point, the rank-nullity theorem is almost trivial. Simply consider the short exact sequence: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>→</mo><mo>ker</mo><mi>f</mi><mo>↪</mo><mi>V</mi><mo>↠</mo><mstyle mathvariant="normal"><mi>i</mi><mi>m</mi></mstyle><mspace width="0.222em"></mspace><mi>f</mi><mo>→</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">0 \rightarrow \ker f \hookrightarrow V \twoheadrightarrow \mathrm{im} \ f \rightarrow 0</annotation></semantics></math> and observe that, since the sequence is split, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>≅</mo><mo>ker</mo><mi>f</mi><mo>⊕</mo><mstyle mathvariant="normal"><mi>i</mi><mi>m</mi></mstyle><mspace width="0.222em"></mspace><mi>f</mi></mrow><annotation encoding="application/x-tex">V \cong \ker f \oplus \mathrm{im} \ f</annotation></semantics></math>. Taking dimension on both sides yields the rank-nullity theorem.</p>
+<p>In fact, we have proven a statement that is more general than the rank-nullity theorem! When <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math> is infinite-dimensional, the rank-nullity theorem fails, but <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>≅</mo><mo>ker</mo><mi>f</mi><mo>⊕</mo><mstyle mathvariant="normal"><mi>i</mi><mi>m</mi></mstyle><mspace width="0.222em"></mspace><mi>f</mi></mrow><annotation encoding="application/x-tex">V \cong \ker f \oplus \mathrm{im} \ f</annotation></semantics></math> still holds.</p>
+<p>This, again, tells us one important fact about vector spaces: that linear maps contain all the information we need to study a space. This is, again, due to the fact that every vector space has a basis, i.e. a generating set that is linearly independent! This is what makes vector spaces so much simpler than general modules.</p>
+<p>On the other hand, the very familiar first isomorphism theorem also implies rank-nullity:</p>
+<p><strong>Theorem 2</strong> (the first isomorphism theorem): let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>,</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">M, N</annotation></semantics></math> be modules over a base ring, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>M</mi><mo>→</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">f : M \rightarrow N</annotation></semantics></math> a linear map. Then <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="normal"><mi>i</mi><mi>m</mi></mstyle><mspace width="0.222em"></mspace><mi>f</mi><mo>≅</mo><mi>M</mi><mi>/</mi><mo>ker</mo><mi>f</mi></mrow><annotation encoding="application/x-tex">\mathrm{im} \ f \cong M/\ker f</annotation></semantics></math>.</p>
+<p>This is slightly weaker than Theorem 1, but enough to prove rank-nullity:</p>
+<p><strong>Alternate proof</strong>: simply take the dimension on both sides in the isomorphism given by the first isomorphism theorem.</p>
+<p>This reiterates the essence of rank-nullity: the rank-nullity theorem is just the first isomorphism theorem in disguise, telling us that a linear map divides the information about a vector space into two complementary parts!</p>
+    </section>
+</article>
+
+            </div>
+          </div>
+        </main>
+
+        <footer>
+            <p>Powered by <a href="http://jaspervdj.be/hakyll">Hakyll</a>.<br />
+            Posts licensed under <a href="https://creativecommons.org/licenses/by/4.0/legalcode">CC-BY-4.0</a>.</p>
+        </footer>
+        
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>
