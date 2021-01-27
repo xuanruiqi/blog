@@ -1,11 +1,23 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
-import           Data.Monoid (mappend)
-import           Hakyll
-import           Hakyll.Web.Sass (sassCompiler)
+import Data.Monoid (mappend)
+import Hakyll
+import Hakyll.Web.Sass (sassCompiler)
+import Text.Pandoc.Options
 
-
-
+-- http://travis.athougies.net/posts/2013-08-13-using-math-on-your-hakyll-blog.html
+pandocMathCompiler :: Compiler (Item String)
+pandocMathCompiler = pandocCompilerWith defaultHakyllReaderOptions writerOptions
+  where
+    mathExtensions = [Ext_tex_math_dollars, Ext_tex_math_double_backslash,
+                      Ext_tex_math_single_backslash, Ext_latex_macros]
+    defaultExtensions = writerExtensions defaultHakyllWriterOptions
+    withTexExtensions = foldr enableExtension defaultExtensions mathExtensions
+    writerOptions = defaultHakyllWriterOptions {
+      writerExtensions = withTexExtensions,
+      writerHTMLMathMethod = MathJax ""
+    }
+  
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
@@ -39,7 +51,7 @@ main = hakyll $ do
                     >>= loadAndApplyTemplate "templates/default.html" ctx
                     >>= relativizeUrls
         route $ setExtension "html"
-        compile $ pandocCompiler
+        compile $ pandocMathCompiler
             >>= loadAndApplyTemplate "templates/post.html"    (postCtxWithTags tags)
             >>= loadAndApplyTemplate "templates/default.html" (postCtxWithTags tags)
             >>= relativizeUrls
