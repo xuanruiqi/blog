@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Xuanrui's Blog - The rank-nullity theorem</title>
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link rel="stylesheet" href="../css/default.css" />
+    </head>
+    <body>
+       <header>
+         <div class="logo">
+           <a href="../">Xuanrui's Blog</a>
+         </div>
+        <nav>
+          <a href="../">Home</a>
+          <a href="../about.html">About</a>
+          <a href="../archive.html">Archive</a>
+        </nav>
+       </header>
+
+        <main role="main">
+          <div class="container">
+            <div class="row">
+              <h1>The rank-nullity theorem</h1>
+            </div>
+            <div class="row">
+              <article>
+    <section class="header">
+        Posted on January 27, 2021
+        <br />
+        
+            Tags: <a title="All pages tagged 'math'." href="../tags/math.html">math</a>, <a title="All pages tagged 'linear-algebra'." href="../tags/linear-algebra.html">linear-algebra</a>, <a title="All pages tagged 'abstract-algebra'." href="../tags/abstract-algebra.html">abstract-algebra</a>
+        
+    </section>
+    <section>
+        <p>This post is about the what the rank-nullity theorem, a rather basic and fundamental result in linear algebra, really means.</p>
+<p>First, I will state a result about vector spaces from which one could prove the rank-nullity theorem:</p>
+<p><strong>Theorem 1</strong>: every short exact sequence of vector spaces splits.</p>
+<p>This looks nothing like the rank-nullity theorem! But first we can look at how this implies rank-nullity. A short exact sequence is just a sequence <span class="math display">\[0 \rightarrow U \xrightarrow{f} V \xrightarrow{g} W \rightarrow 0\]</span> of vector spaces, where <span class="math inline">\(\mathrm{im} \ f = \ker g\)</span> (hence the name “exact”).</p>
+<p>This sequence is split when <span class="math inline">\(V \cong U \oplus W\)</span>. A short exact sequence is interesting, because it tells us how <span class="math inline">\(V\)</span> is built from <span class="math inline">\(U\)</span> and <span class="math inline">\(W\)</span>: if the exact sequence is split, then we have the most obvious building method, which make things much easier. Another way to think about this is by the splitting lemma:</p>
+<p><strong>Lemma</strong> (splitting lemma): for a short exact sequence <span class="math display">\[0 \rightarrow L \xrightarrow{f} M \xrightarrow{g} N \rightarrow 0\]</span> of <span class="math inline">\(R\)</span>-modules, where <span class="math inline">\(R\)</span> is any ring, the following are equivalent:</p>
+<ul>
+<li><span class="math inline">\(f\)</span> is left-invertible, i.e. there is a morphism <span class="math inline">\(h : B \rightarrow A\)</span> such that <span class="math inline">\(h \circ f = \mathrm{id}_A\)</span>;</li>
+<li><span class="math inline">\(g\)</span> is right-invertible;</li>
+<li>the sequence is split, i.e. <span class="math inline">\(M \cong L \oplus N\)</span>.</li>
+</ul>
+<p>I won’t repeat the proof here, because it could be found in any graduate algebra text. On a side note, this facts actually holds over any abelian category, not just <span class="math inline">\(\mathbf{Mod} R\)</span>.</p>
+<p>The fact that every short exact sequence of vector spaces splits is rooted in a much simpler fact: any vector space has a basis. We can use this fact to prove theorem 1:</p>
+<p><strong>Proof of Theorem 1</strong>: let <span class="math inline">\(\{w_i\}\)</span> be a basis of <span class="math inline">\(W\)</span>. Since <span class="math inline">\(g\)</span> is necessarily surjective (why?), we can find a set <span class="math inline">\(\{v_i\} \subseteq V\)</span> such that <span class="math inline">\(f(v_i) = w_i\)</span>. Then we define a function <span class="math inline">\(h : W \rightarrow V\)</span> by setting <span class="math inline">\(h(w_i) = v_i\)</span>. This is well-defined because a linear map is determined by its action on basis elements. <span class="math inline">\(h\)</span> is a right inverse to <span class="math inline">\(g\)</span>, so by the splitting lemma this short exact sequence is split.</p>
+<p><strong>Proof of rank-nullity</strong>: at this point, the rank-nullity theorem is almost trivial. Simply consider the short exact sequence: <span class="math display">\[0 \rightarrow \ker f \hookrightarrow V \twoheadrightarrow \mathrm{im} \ f \rightarrow 0\]</span> and observe that, since the sequence is split, <span class="math inline">\(V \cong \ker f \oplus \mathrm{im} \ f\)</span>. Taking dimension on both sides yields the rank-nullity theorem.</p>
+<p>In fact, we have proven a statement that is more general than the rank-nullity theorem! When <span class="math inline">\(V\)</span> is infinite-dimensional, the rank-nullity theorem fails, but <span class="math inline">\(V \cong \ker f \oplus \mathrm{im} \ f\)</span> still holds.</p>
+<p>This, again, tells us one important fact about vector spaces: that linear maps contain all the information we need to study a space. This is, again, due to the fact that every vector space has a basis, i.e. a generating set that is linearly independent! This is what makes vector spaces so much simpler than general modules.</p>
+<p>On the other hand, the very familiar first isomorphism theorem also implies rank-nullity:</p>
+<p><strong>Theorem 2</strong> (the first isomorphism theorem): let <span class="math inline">\(M, N\)</span> be modules over a base ring, and <span class="math inline">\(f : M \rightarrow N\)</span> a linear map. Then <span class="math inline">\(\mathrm{im} \ f \cong M/\ker f\)</span>.</p>
+<p>This is slightly weaker than Theorem 1, but enough to prove rank-nullity:</p>
+<p><strong>Alternate proof</strong>: by the first isomorphism theorem, we know that <span class="math inline">\(\mathrm{im} \ f \cong V/ \ker f\)</span>. Taking the dimension on both sides yields <span class="math inline">\(\dim \mathrm{im} \ f = \dim V - \dim \ker f\)</span>.</p>
+<p>This reiterates the essence of rank-nullity: the rank-nullity theorem is just the first isomorphism theorem in disguise, telling us that a linear map divides the information about a vector space into two complementary parts!</p>
+    </section>
+</article>
+
+            </div>
+          </div>
+        </main>
+
+        <footer>
+            <p>Powered by <a href="http://jaspervdj.be/hakyll">Hakyll</a>.<br />
+            Posts licensed under <a href="https://creativecommons.org/licenses/by/4.0/legalcode">CC-BY-4.0</a>.</p>
+        </footer>
+        
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>
