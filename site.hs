@@ -1,5 +1,6 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
+import Data.Semigroup ((<>))
 import Data.Monoid (mappend)
 import Hakyll
 import Hakyll.Web.Sass (sassCompiler)
@@ -15,7 +16,7 @@ pandocMathCompiler = pandocCompilerWith defaultHakyllReaderOptions writerOptions
     withTexExtensions = foldr enableExtension defaultExtensions mathExtensions
     writerOptions = defaultHakyllWriterOptions {
       writerExtensions = withTexExtensions,
-      writerHTMLMathMethod = MathJax ""
+      writerHTMLMathMethod = MathML
     }
   
 --------------------------------------------------------------------------------
@@ -36,16 +37,16 @@ main = hakyll $ do
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
-    match "posts/*" $ do
-        tags <- buildTags "posts/*" (fromCapture "tags/*.html")
+    match ("posts/*.md" .||. "posts/*.markdown" .||. "posts/*.tex") $ do
+        tags <- buildTags ("posts/*.md" .||. "posts/*.markdown" .||. "posts/*.tex") (fromCapture "tags/*.html")
         tagsRules tags $ \tag pattern -> do
             let title = "Posts tagged \"" ++ tag ++ "\""
             route idRoute
             compile $ do
                 posts <- recentFirst =<< loadAll pattern
                 let ctx = constField "title" title
-                      `mappend` listField "posts" postCtx (return posts)
-                      `mappend` defaultContext
+                          <> listField "posts" postCtx (return posts)
+                          <> defaultContext
                 makeItem ""
                     >>= loadAndApplyTemplate "templates/tag.html" ctx
                     >>= loadAndApplyTemplate "templates/default.html" ctx
@@ -55,14 +56,14 @@ main = hakyll $ do
             >>= loadAndApplyTemplate "templates/post.html"    (postCtxWithTags tags)
             >>= loadAndApplyTemplate "templates/default.html" (postCtxWithTags tags)
             >>= relativizeUrls
-
+    
     create ["archive.html"] $ do
         route idRoute
         compile $ do
             posts <- recentFirst =<< loadAll "posts/*"
             let archiveCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Archives"            `mappend`
+                    listField "posts" postCtx (return posts) <>
+                    constField "title" "Archives"            <>
                     defaultContext
 
             makeItem ""
@@ -76,8 +77,8 @@ main = hakyll $ do
         compile $ do
             recentPosts <- fmap (take 5) . recentFirst =<< loadAll "posts/*"
             let indexCtx =
-                    listField "recentPosts" postCtx (return recentPosts) `mappend`
-                    constField "title" "Home"                            `mappend`
+                    listField "recentPosts" postCtx (return recentPosts) <>
+                    constField "title" "Home"                            <>
                     defaultContext
 
             getResourceBody
@@ -90,9 +91,9 @@ main = hakyll $ do
 
 --------------------------------------------------------------------------------
 postCtxWithTags :: Tags -> Context String
-postCtxWithTags tags = tagsField "tags" tags `mappend` postCtx
+postCtxWithTags tags = tagsField "tags" tags <> postCtx
 
 postCtx :: Context String
 postCtx =
-    dateField "date" "%B %e, %Y" `mappend`
-    defaultContext
+  dateField "date" "%B %e, %Y" <>
+  defaultContext
